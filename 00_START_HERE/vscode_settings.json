@@ -1,0 +1,40 @@
+{
+  "terminal.integrated.profiles.osx": {
+    "🎯 Orchestrator": {
+      "path": "bash",
+      "args": ["-c", "claude --system-prompt \"$(cat .ecosystem/AGENT_STANDARDS.md .ecosystem/agents/orchestrator.md)\""],
+      "icon": "target", "color": "terminal.ansiYellow"
+    },
+    "🖥️ Frontend": {
+      "path": "bash",
+      "args": ["-c", "claude --system-prompt \"$(cat .ecosystem/AGENT_STANDARDS.md .ecosystem/agents/frontend.md)\""],
+      "icon": "browser", "color": "terminal.ansiCyan"
+    },
+    "⚙️ Backend": {
+      "path": "bash",
+      "args": ["-c", "claude --system-prompt \"$(cat .ecosystem/AGENT_STANDARDS.md .ecosystem/agents/backend.md)\""],
+      "icon": "server", "color": "terminal.ansiBlue"
+    },
+    "🧪 Tester": {
+      "path": "bash",
+      "args": ["-c", "claude --system-prompt \"$(cat .ecosystem/AGENT_STANDARDS.md .ecosystem/agents/tester.md)\""],
+      "icon": "beaker", "color": "terminal.ansiGreen"
+    },
+    "🚀 DevOps": {
+      "path": "bash",
+      "args": ["-c", "claude --system-prompt \"$(cat .ecosystem/AGENT_STANDARDS.md .ecosystem/agents/devops.md)\""],
+      "icon": "rocket", "color": "terminal.ansiMagenta"
+    },
+    "🔐 Security": {
+      "path": "bash",
+      "args": ["-c", "claude --system-prompt \"$(cat .ecosystem/AGENT_STANDARDS.md .ecosystem/agents/security.md)\""],
+      "icon": "shield", "color": "terminal.ansiRed"
+    }
+  },
+  "search.exclude": {
+    ".ecosystem/agents": true,
+    "node_modules": true,
+    "dist": true
+  },
+  "editor.formatOnSave": true
+}
