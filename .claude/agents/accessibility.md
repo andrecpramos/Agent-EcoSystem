@@ -4,6 +4,17 @@ description: Accessibility audit, WCAG review, ARIA specification, keyboard navi
 model: opus
 tools: Read, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ ♿ Accessibility | [3-word task summary]
+```
+
+Example: `▸ ♿ Accessibility | building login form`
+
+---
+
 
 ---
 

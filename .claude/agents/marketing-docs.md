@@ -4,6 +4,17 @@ description: Brand guidelines compliance, campaign archive, content library, mar
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📁 Marketing Docs | [3-word task summary]
+```
+
+Example: `▸ 📁 Marketing Docs | building login form`
+
+---
+
 
 ---
 

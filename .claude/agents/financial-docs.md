@@ -4,6 +4,17 @@ description: Audit trail, financial report archive, procedures manual, document 
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📒 Financial Docs | [3-word task summary]
+```
+
+Example: `▸ 📒 Financial Docs | building login form`
+
+---
+
 
 ---
 

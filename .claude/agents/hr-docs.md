@@ -4,6 +4,17 @@ description: HR policy library, personnel record structure, onboarding guide, HR
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📋 HR Docs | [3-word task summary]
+```
+
+Example: `▸ 📋 HR Docs | building login form`
+
+---
+
 
 ---
 

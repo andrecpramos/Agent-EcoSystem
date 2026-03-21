@@ -4,6 +4,17 @@ description: Update sales playbook, battle cards, CRM field definitions, email t
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📊 Sales Docs | [3-word task summary]
+```
+
+Example: `▸ 📊 Sales Docs | building login form`
+
+---
+
 
 ---
 

@@ -4,6 +4,17 @@ description: Support ticket triage, knowledge base articles, customer issue reso
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🎧 Support Agent | [3-word task summary]
+```
+
+Example: `▸ 🎧 Support Agent | building login form`
+
+---
+
 
 ---
 

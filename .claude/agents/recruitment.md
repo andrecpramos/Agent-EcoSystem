@@ -4,6 +4,17 @@ description: Job description writing, candidate evaluation, interview design, of
 model: sonnet
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🔍 Recruitment | [3-word task summary]
+```
+
+Example: `▸ 🔍 Recruitment | building login form`
+
+---
+
 
 ---
 

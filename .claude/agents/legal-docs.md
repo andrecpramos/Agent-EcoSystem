@@ -4,6 +4,17 @@ description: Contract template library, executed contract archive, legal opinion
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📜 Legal Docs | [3-word task summary]
+```
+
+Example: `▸ 📜 Legal Docs | building login form`
+
+---
+
 
 ---
 

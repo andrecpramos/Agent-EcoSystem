@@ -4,6 +4,17 @@ description: Vendor evaluation, contract negotiation support, vendor onboarding,
 model: sonnet
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🏢 Vendor / Procurement | [3-word task summary]
+```
+
+Example: `▸ 🏢 Vendor / Procurement | building login form`
+
+---
+
 
 ---
 

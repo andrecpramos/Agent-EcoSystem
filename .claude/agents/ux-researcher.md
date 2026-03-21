@@ -4,6 +4,17 @@ description: User research, usability testing, research synthesis, insight repor
 model: opus
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🔍 UX Researcher | [3-word task summary]
+```
+
+Example: `▸ 🔍 UX Researcher | building login form`
+
+---
+
 
 ---
 

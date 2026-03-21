@@ -4,6 +4,17 @@ description: Visual identity, colour system, typography, design tokens, componen
 model: sonnet
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🎨 Brand Designer | [3-word task summary]
+```
+
+Example: `▸ 🎨 Brand Designer | building login form`
+
+---
+
 
 ---
 

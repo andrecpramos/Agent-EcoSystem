@@ -3,6 +3,17 @@ name: backend
 description: Build or modify API endpoints, server logic, database queries, authentication, integrations, backend services
 model: sonnet
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ ⚙️ Backend | [3-word task summary]
+```
+
+Example: `▸ ⚙️ Backend | building login form`
+
+---
+
 
 ---
 

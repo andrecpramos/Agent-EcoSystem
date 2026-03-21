@@ -4,6 +4,17 @@ description: CS playbook, health score documentation, onboarding templates, user
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📚 CS Docs | [3-word task summary]
+```
+
+Example: `▸ 📚 CS Docs | building login form`
+
+---
+
 
 ---
 

@@ -4,6 +4,17 @@ description: Marketing strategy, campaign briefs, MQL definitions, positioning, 
 model: sonnet
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📣 Marketing Strategist | [3-word task summary]
+```
+
+Example: `▸ 📣 Marketing Strategist | building login form`
+
+---
+
 
 ---
 

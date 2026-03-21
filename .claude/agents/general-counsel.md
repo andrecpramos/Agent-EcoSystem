@@ -4,6 +4,17 @@ description: Contract review, legal risk assessment, privacy compliance, DPIA, l
 model: opus
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ ⚖️ General Counsel | [3-word task summary]
+```
+
+Example: `▸ ⚖️ General Counsel | building login form`
+
+---
+
 
 ---
 

@@ -4,6 +4,17 @@ description: Document design decisions, maintain design system docs, update comp
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 📐 Design Docs | [3-word task summary]
+```
+
+Example: `▸ 📐 Design Docs | building login form`
+
+---
+
 
 ---
 

@@ -4,6 +4,17 @@ description: Animation specifications, motion design, transition specs, micro-in
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ ✨ Motion Designer | [3-word task summary]
+```
+
+Example: `▸ ✨ Motion Designer | building login form`
+
+---
+
 
 ---
 

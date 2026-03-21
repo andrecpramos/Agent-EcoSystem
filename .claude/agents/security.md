@@ -4,6 +4,17 @@ description: Security review, vulnerability assessment, threat modelling, SAST s
 model: opus
 tools: Read, Grep, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🔐 Security | [3-word task summary]
+```
+
+Example: `▸ 🔐 Security | building login form`
+
+---
+
 
 ---
 

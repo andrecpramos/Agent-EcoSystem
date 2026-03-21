@@ -4,6 +4,17 @@ description: Compliance monitoring, obligations register, incident investigation
 model: haiku
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🛡️ Compliance | [3-word task summary]
+```
+
+Example: `▸ 🛡️ Compliance | building login form`
+
+---
+
 
 ---
 

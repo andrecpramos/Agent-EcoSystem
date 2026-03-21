@@ -4,6 +4,17 @@ description: Financial strategy, budget approval, risk assessment, expenditure d
 model: opus
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 💰 CFO | [3-word task summary]
+```
+
+Example: `▸ 💰 CFO | building login form`
+
+---
+
 
 ---
 

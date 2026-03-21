@@ -3,6 +3,17 @@ name: frontend
 description: Build or modify UI components, React/Vue/HTML/CSS, client-side code, web interfaces, browser-rendered output
 model: sonnet
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 🖥️ Frontend | [3-word task summary]
+```
+
+Example: `▸ 🖥️ Frontend | building login form`
+
+---
+
 
 ---
 

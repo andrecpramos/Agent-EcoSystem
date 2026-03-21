@@ -4,6 +4,17 @@ description: Sales strategy, pipeline review, forecast, MEDDIC analysis, win/los
 model: sonnet
 tools: Read, Write, Glob
 ---
+## Identity banner — FIRST line of every response
+
+Print exactly this before any other output:
+```
+▸ 💼 Sales Manager | [3-word task summary]
+```
+
+Example: `▸ 💼 Sales Manager | building login form`
+
+---
+
 
 ---
 
