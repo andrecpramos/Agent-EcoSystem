@@ -1,40 +1,97 @@
-# SESSION PROTOCOL v3.0
-## How agents are spawned — both execution models documented
+# SESSION PROTOCOL v3.1
+## Correct flow · Context management · Both spawn models
 
 ---
 
-## The two spawn models
+## The correct execution flow
 
-Claude Code supports two execution models. Chief of Staff uses whichever
-matches how your session is running.
+```
+CEO Layer gives task
+      ↓
+Orchestrator (CLAUDE.md)
+  — plans, identifies agents, writes briefs
+  — invokes chief-of-staff via Agent tool  ← this happens immediately
+      ↓
+Chief of Staff (agent)
+  — receives spawn request
+  — spawns team agents via Agent tool or CLI
+  — returns output to Orchestrator
+      ↓
+Orchestrator reviews output
+  — if review needed: invokes COS again → reviewer agent
+  — reports status to CEO Layer
+```
+
+**CEO Layer does nothing except give the initial task.**
+The Orchestrator → COS → agents chain executes automatically.
 
 ---
+
+## Why Orchestrator invokes COS directly
+
+Previous design: Orchestrator writes spawn requests as text, waits for CEO Layer
+to manually open COS. This broke the workflow — CEO had to intervene every time.
+
+Current design: Orchestrator has exactly one permitted Agent tool call — `chief-of-staff`.
+Everything else is still prohibited. COS spawns all team agents.
+Architecture is preserved. Flow is uninterrupted.
+
+---
+
+## Context management
+
+### When to compress
+
+Orchestrator tracks context usage and acts before degradation:
+
+| Context level | Action |
+|---|---|
+| ~60% | Warn CEO Layer, begin writing session summary |
+| ~80% | Finish current task only, write summary, signal new session needed |
+| New topic / major context shift | Proactively suggest new conversation |
+
+### Session summary format
+
+Written to `.ecosystem/logs/session-summary.md` by COS (on Orchestrator instruction):
+
+```
+SESSION SUMMARY — [datetime]
+Completed  : [what was finished]
+In progress: [agent · task · current status]
+Blocked    : [anything waiting and why]
+Next actions: [exactly what the next session does first]
+Open tickets: [ticket IDs still active]
+```
+
+### Resuming in a new conversation
+
+CEO Layer pastes this as the first message:
+```
+Continuing from previous session.
+[paste session-summary.md contents]
+Resume from: [next action from the summary]
+```
+
+Orchestrator reads it, runs the session start block, and continues.
+
+---
+
+## Spawn methods — Model A preferred
 
 ### Model A — Interactive session (VS Code / Claude Code chat)
 
-Chief of Staff uses the **Agent tool** (Task tool):
-
+Chief of Staff uses the Agent tool:
 ```
-Agent tool call:
-  subagent_type : [agent name matching .claude/agents/ filename]
-  prompt        : [full task brief including skill if needed]
+subagent_type : [agent name matching .claude/agents/ filename]
+prompt        : [task brief + skill content if needed]
 ```
 
-Claude Code reads the matching file from `.claude/agents/[name].md`
-automatically. The agent runs in its own context window.
-Output returns to Chief of Staff as the tool result.
-
-**Parallel spawn:** call the Agent tool multiple times in the same response.
-Claude Code runs them concurrently.
-
----
+**Parallel:** multiple Agent tool calls in one COS response = concurrent execution.
 
 ### Model B — CLI / automated session
 
-Chief of Staff uses bash subprocesses:
-
 ```bash
-# Sequential — wait for completion
+# Standard
 claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
   .claude/agents/[agent].md)" \
   --print "[task brief]"
@@ -42,99 +99,38 @@ claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
 # With skill injected
 claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
   .claude/agents/[agent].md \
-  .skills/[source]/[skill-path])" \
+  .skills/[source]/[skill-file])" \
   --print "[task brief]"
 
-# Parallel — background processes
-claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
-  .claude/agents/[agent].md)" \
-  --print "[task brief]" \
+# Parallel background
+claude --system-prompt "..." --print "[brief]" \
   > .ecosystem/logs/[agent]-output.md 2>&1 &
-
-wait  # wait for all parallel agents
+wait
 ```
 
----
-
-## How Chief of Staff decides which model to use
-
-```
-Am I in an interactive Claude Code / VS Code session?
-  YES → use Agent tool (Model A)
-  NO  → use CLI bash subprocess (Model B)
-```
-
-If unsure: attempt Model A first. If Agent tool is not available, use Model B.
-
----
-
-## Skill injection — both models
-
-**Model A (Agent tool):** include the skill content directly in the prompt field.
-Chief of Staff reads the skill file and pastes it into the prompt.
-
-```
-prompt: [task brief]
-
----
-[contents of .skills/custom/code-conventions.md pasted here]
-```
-
-**Model B (CLI):** concatenate the skill file into the system prompt.
-```bash
-claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
-  .claude/agents/[agent].md \
-  .skills/custom/code-conventions.md)" \
-  --print "[task brief]"
-```
+COS attempts Model A first. Uses Model B if Agent tool is unavailable.
 
 ---
 
 ## Session registry
 
-Chief of Staff maintains `.ecosystem/agent-sessions.md`:
+`.ecosystem/agent-sessions.md` — maintained by COS:
 
 ```
-| When             | Agent    | Model | Status   | Task                  |
-| 2026-03-20 09:14 | frontend | A     | SPAWNED  | Build login component |
-| 2026-03-20 09:31 | frontend | A     | COMPLETE | Login component done  |
-```
-
----
-
-## Single-session collapse — how the gate prevents it
-
-**The PRE-RESPONSE GATE in CLAUDE.md is the primary enforcement.**
-It is unconditional — it runs before every substantive response, not just
-before "production tasks." The Orchestrator cannot categorise around it.
-
-**Tool prohibition is the structural backstop.**
-Even if the gate were bypassed, the Orchestrator's prohibited actions list
-removes the tools needed to execute production work directly.
-
-**Two layers. Neither relies on judgement.**
-
----
-
-## Parallel execution — Model A
-
-```
-Chief of Staff response (single message, multiple Agent tool calls):
-  [Agent tool: frontend] → build login UI
-  [Agent tool: backend]  → build auth API
-  (both run simultaneously)
-  (results return when both complete)
+| When             | Agent    | Model | Status   | Task                |
+| 2026-03-20 09:14 | frontend | A     | SPAWNED  | Build login UI      |
+| 2026-03-20 09:31 | frontend | A     | COMPLETE | Login UI done       |
 ```
 
 ---
 
-## Resuming an agent (Model A)
+## Collapse prevention — updated
 
-```
-"Continue the previous frontend work and add the password reset flow."
-→ Chief of Staff uses SendMessage with the previous agent's ID
-→ Agent resumes with full conversation history
-```
+**The PRE-RESPONSE GATE** in CLAUDE.md stops the Orchestrator from producing directly.
+**The PROHIBITED list** removes all tools except the COS Agent tool call.
+**The COS invocation** is immediate — Orchestrator does not write requests and wait.
+
+Three layers. None rely on judgement alone.
 
 ---
-*Session Protocol v3.0 · Ecosystem v3 · Both spawn models documented*
+*Session Protocol v3.1 · Ecosystem v3*
