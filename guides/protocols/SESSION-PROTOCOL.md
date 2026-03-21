@@ -1,37 +1,40 @@
-# SESSION PROTOCOL v2.1
-## Chief of Staff spawns agents — no manual terminals required
+# SESSION PROTOCOL v3.0
+## How agents are spawned — both execution models documented
 
 ---
 
-## How it works now
+## The two spawn models
 
-```
-CEO Layer gives task
-    ↓
-Orchestrator (CLAUDE.md) — plans, identifies agents, writes briefs
-    ↓
-Orchestrator sends AGENT SPAWN REQUESTS to Chief of Staff
-    ↓
-Chief of Staff executes terminal spawn commands for each agent
-  ├── frontend:  claude --system-prompt "..." --print "[brief]"
-  ├── backend:   claude --system-prompt "..." --print "[brief]" &
-  └── tester:    claude --system-prompt "..." --print "[brief]"
-    ↓
-Each agent runs in isolation, returns output to log file
-    ↓
-Chief of Staff reads output, reports to Orchestrator
-    ↓
-Orchestrator reviews, sends next spawn request or reports done
-```
-
-You open Claude Code once. Chief of Staff handles all agent spawning.
+Claude Code supports two execution models. Chief of Staff uses whichever
+matches how your session is running.
 
 ---
 
-## Spawn command reference
+### Model A — Interactive session (VS Code / Claude Code chat)
+
+Chief of Staff uses the **Agent tool** (Task tool):
+
+```
+Agent tool call:
+  subagent_type : [agent name matching .claude/agents/ filename]
+  prompt        : [full task brief including skill if needed]
+```
+
+Claude Code reads the matching file from `.claude/agents/[name].md`
+automatically. The agent runs in its own context window.
+Output returns to Chief of Staff as the tool result.
+
+**Parallel spawn:** call the Agent tool multiple times in the same response.
+Claude Code runs them concurrently.
+
+---
+
+### Model B — CLI / automated session
+
+Chief of Staff uses bash subprocesses:
 
 ```bash
-# Sequential (wait for completion)
+# Sequential — wait for completion
 claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
   .claude/agents/[agent].md)" \
   --print "[task brief]"
@@ -39,86 +42,99 @@ claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
 # With skill injected
 claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
   .claude/agents/[agent].md \
-  .skills/anthropic/[skill]/SKILL.md)" \
+  .skills/[source]/[skill-path])" \
   --print "[task brief]"
 
-# Parallel (background, saves output to log)
+# Parallel — background processes
 claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
   .claude/agents/[agent].md)" \
   --print "[task brief]" \
   > .ecosystem/logs/[agent]-output.md 2>&1 &
 
-# Wait for all background agents to complete
-wait
+wait  # wait for all parallel agents
 ```
 
 ---
 
-## Available Anthropic skills
+## How Chief of Staff decides which model to use
 
-| Skill name | Path | Use when |
-|---|---|---|
-| `frontend-design` | `.skills/anthropic/frontend-design/SKILL.md` | UI / visual frontend work |
-| `docx` | `.skills/anthropic/docx/SKILL.md` | Word document output |
-| `pdf` | `.skills/anthropic/pdf/SKILL.md` | PDF creation or reading |
-| `pptx` | `.skills/anthropic/pptx/SKILL.md` | Presentation / slide deck |
-| `xlsx` | `.skills/anthropic/xlsx/SKILL.md` | Spreadsheet output |
-| `product-self-knowledge` | `.skills/anthropic/product-self-knowledge/SKILL.md` | Anthropic product questions |
+```
+Am I in an interactive Claude Code / VS Code session?
+  YES → use Agent tool (Model A)
+  NO  → use CLI bash subprocess (Model B)
+```
 
-**Injection rule:** one skill per spawn, or none. Never inject speculatively.
-Skills are tokens. Only load what the task requires. Release by not re-injecting next spawn.
+If unsure: attempt Model A first. If Agent tool is not available, use Model B.
 
 ---
 
-## Tool economy
+## Skill injection — both models
 
-Tool activation is declared in the task brief and in each agent's YAML `tools` field.
-Restricted agents (security, accessibility, data-analyst) have read-only tools by design.
-For other agents, tools inherit by default — no need to list unless restricting.
+**Model A (Agent tool):** include the skill content directly in the prompt field.
+Chief of Staff reads the skill file and pastes it into the prompt.
+
+```
+prompt: [task brief]
+
+---
+[contents of .skills/custom/code-conventions.md pasted here]
+```
+
+**Model B (CLI):** concatenate the skill file into the system prompt.
+```bash
+claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
+  .claude/agents/[agent].md \
+  .skills/custom/code-conventions.md)" \
+  --print "[task brief]"
+```
 
 ---
 
 ## Session registry
 
-Location: `.ecosystem/agent-sessions.md`
+Chief of Staff maintains `.ecosystem/agent-sessions.md`:
 
-Chief of Staff maintains this. Format:
 ```
-| When             | Agent    | Status   | Task                  |
-| 2026-03-20 09:14 | frontend | SPAWNED  | Build login component |
-| 2026-03-20 09:31 | frontend | COMPLETE | Login component done  |
-```
-
----
-
-## Single-session collapse — both forms now blocked
-
-**Form 1 — Orchestrator produces code directly:**
-CLAUDE.md instructs Orchestrator to send all production tasks as spawn requests.
-Orchestrator has no bash tool access — it cannot spawn itself.
-
-**Form 2 — Orchestrator executes operations directly:**
-Chief of Staff holds bash/Notion tool access.
-Orchestrator sends a spawn request → COS executes. Never the other way.
-
----
-
-## Parallel execution pattern
-
-```bash
-# Chief of Staff parallel spawn
-claude --system-prompt "..." --print "[frontend brief]" \
-  > .ecosystem/logs/frontend-output.md 2>&1 &
-
-claude --system-prompt "..." --print "[backend brief]" \
-  > .ecosystem/logs/backend-output.md 2>&1 &
-
-wait  # wait for both to complete
-
-# Read outputs
-cat .ecosystem/logs/frontend-output.md
-cat .ecosystem/logs/backend-output.md
+| When             | Agent    | Model | Status   | Task                  |
+| 2026-03-20 09:14 | frontend | A     | SPAWNED  | Build login component |
+| 2026-03-20 09:31 | frontend | A     | COMPLETE | Login component done  |
 ```
 
 ---
-*Session Protocol v2.1 · Ecosystem v2.0 · COS owns spawning*
+
+## Single-session collapse — how the gate prevents it
+
+**The PRE-RESPONSE GATE in CLAUDE.md is the primary enforcement.**
+It is unconditional — it runs before every substantive response, not just
+before "production tasks." The Orchestrator cannot categorise around it.
+
+**Tool prohibition is the structural backstop.**
+Even if the gate were bypassed, the Orchestrator's prohibited actions list
+removes the tools needed to execute production work directly.
+
+**Two layers. Neither relies on judgement.**
+
+---
+
+## Parallel execution — Model A
+
+```
+Chief of Staff response (single message, multiple Agent tool calls):
+  [Agent tool: frontend] → build login UI
+  [Agent tool: backend]  → build auth API
+  (both run simultaneously)
+  (results return when both complete)
+```
+
+---
+
+## Resuming an agent (Model A)
+
+```
+"Continue the previous frontend work and add the password reset flow."
+→ Chief of Staff uses SendMessage with the previous agent's ID
+→ Agent resumes with full conversation history
+```
+
+---
+*Session Protocol v3.0 · Ecosystem v3 · Both spawn models documented*

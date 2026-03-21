@@ -1,147 +1,111 @@
 # AGENT STANDARDS
-## Applies to every agent in the ecosystem — read this before your agent file
+## Read this before your agent file. These apply to every agent.
 
 ---
 
-## 0. Identity Banner — print this as your FIRST output, every response
+## 0. Identity banner — first line of every response
 
 ```
-▸ [ICON] [AGENT NAME] | [task type in 3 words]
+▸ [ICON] [AGENT NAME] | [3-word task summary]
 ```
-
-Examples:
-```
-▸ 🖥️ Frontend     | building auth UI
-▸ ⚙️ Backend      | designing API contract
-▸ 🧪 Tester       | writing acceptance criteria
-▸ 🎯 Orchestrator | decomposing task
-▸ 🧠 Chief of Staff | spawning agents
-```
-
-Keep it to one line. It is a marker, not a header.
-This is the signal to you and to the CEO Layer that the correct agent is active.
 
 ---
 
-## 1. Cross-Team Communication
+## 1. Cross-team communication
 
-**Never contact another team's agent directly.**
+Never contact another team's agent directly.
 All cross-team requests go through the Orchestrator via ECO-PROTO-01.
 
-When you need something from another team:
-1. STOP — do not proceed or assume
+1. STOP — do not proceed
 2. FILE — Request Ticket to Orchestrator (tickets.md)
-3. WAIT — do not continue until Orchestrator responds
+3. WAIT — proceed only when Orchestrator responds
 
 ---
 
-## 2. Out-of-Scope Tasks
+## 2. Out-of-scope tasks
 
-When a task is outside your defined skill boundary:
-1. STOP — do not begin any out-of-scope work
+1. STOP — do not begin out-of-scope work
 2. FILE — CLARIFICATION ticket to Orchestrator
-3. WAIT — proceed only on scope Orchestrator confirms
+3. WAIT — proceed only on confirmed scope
 
 ---
 
-## 3. Thinking Block
-
-Print this before every response (after the identity banner):
+## 3. Thinking block — after identity banner, before response
 
 ```
 Task     : [what you were asked — one line]
-Checking : [in scope? inputs available? skills/tools needed?]
-Tools    : [which tools active for this task — or: none beyond defaults]
-Skills   : [which skill loaded for this task — or: none]
+Checking : [in scope? inputs available? skill active?]
+Tools    : [tools needed — or: none beyond defaults]
+Skill    : [skill loaded — or: none]
 Plan     : [steps — max 4]
 Starting : [first action]
 ```
 
 ---
 
-## 4. Production Guard ⚠️
+## 4. Pre-response gate
 
-Before any response involving file output, code, content, tool calls,
-or operational actions — answer every line honestly:
+Before any response that produces output — answer every line:
 
 ```
-PRODUCTION GUARD
-────────────────────────────────────────
-Agent session : [my role]
-Task type     : [code / content / design / ops / planning / review]
-Am I the right agent?              YES / NO
-Tools needed beyond defaults?      [list or: none]
-Skill needed?                      [name or: none]
-────────────────────────────────────────
-If wrong agent → STOP. File CLARIFICATION ticket.
-If tools/skill needed → request activation in task brief.
-────────────────────────────────────────
+PRE-RESPONSE GATE
+──────────────────────────────────────────────
+Am I about to produce output?            YES / NO
+If YES:
+  Is this within my skill boundary?      YES / NO
+  If NO → STOP. File CLARIFICATION ticket.
+  If YES → proceed
+──────────────────────────────────────────────
 ```
 
 ---
 
-## 5. Tool and Skill Economy ⚡
+## 5. Tool and skill economy
 
-**Tools and skills cost tokens. Only activate what the current task requires.**
+Activate only what this specific task requires.
 
-### Rule: activate on task start, deactivate when task is done
-
-When starting a task — state which tools and skills you need:
+State at task start:
 ```
-ACTIVATING: [tool or skill name] — needed for [specific reason]
+ACTIVATING: [tool or skill] — needed for [reason]
 ```
 
-When the task is complete — explicitly release them:
-```
-DEACTIVATING: [tool or skill name] — task complete, no longer needed
-```
+Release when task is complete — simply do not re-activate next task.
 
-### Which skills map to which agents
-
-| Skill | Agent | When to load |
-|---|---|---|
-| `frontend-design` | frontend, designer | UI/visual work only |
-| `docx` | dev-docs, product-docs, hr-docs, legal-docs | Word document output |
-| `pdf` | legal-docs, financial-docs, compliance | PDF creation/reading |
-| `pptx` | marketing-strategist, product-manager | Slide deck output |
-| `xlsx` | financial-analyst, data-analyst | Spreadsheet output |
-| `product-self-knowledge` | product-manager, orchestrator | Anthropic product questions |
-
-**Skills are injected by the Chief of Staff into the agent's task brief.**
-Agents do not load skills themselves — they receive them pre-injected.
+Skill mapping: check `.skills/SKILLS.md` for trigger conditions.
 
 ---
 
-## 6. Error Logging
+## 6. Error logging
 
-Append to .ecosystem/logs/errors.md when anything goes wrong:
-
+```
 | YYYY-MM-DD HH:MM | [Agent] | [TYPE] | [One sentence] |
+```
 
-Types: SCOPE_VIOLATION · MISSING_INPUT · BLOCKED · ESCALATION
-       TICKET_FILED · SECURITY_ALERT · BUILD_FAILURE · INCIDENT
-       SESSION_COLLAPSE · SETUP_REQUIRED · SKILL_MISUSE
+Append to `.ecosystem/logs/errors.md`
+
+Types: `SCOPE_VIOLATION` · `MISSING_INPUT` · `BLOCKED` · `ESCALATION`
+`TICKET_FILED` · `SECURITY_ALERT` · `BUILD_FAILURE` · `INCIDENT`
+`SESSION_COLLAPSE` · `SETUP_REQUIRED` · `SKILL_MISUSE`
 
 ---
 
-## 7. Capacity Self-Monitoring
+## 7. Capacity self-monitoring
 
-File a CAPACITY ticket when you hit structural limits:
-- COMPLEXITY — tasks need deeper expertise than your role was built for
+File CAPACITY ticket when:
+- COMPLEXITY — task needs deeper expertise than this role
 - SCOPE CREEP — absorbing work that belongs to a dormant agent
 
 Volume alone never justifies dormant agent activation.
 
 ---
 
-## 8. Self-Check Before Every Task
+## 8. Self-check before every task
 
-- [ ] Printed identity banner?
-- [ ] Is this within my skill boundary?
-- [ ] Do I have all required inputs?
-- [ ] Which tools and skills does this specific task need? (no extras)
-- [ ] Any cross-team dependencies needed first?
-- [ ] If any wrong → file a ticket before proceeding
+- [ ] Banner printed?
+- [ ] Within skill boundary?
+- [ ] All required inputs available?
+- [ ] Correct tools and skill identified (no extras)?
+- [ ] Pre-response gate cleared?
 
 ---
-*Ecosystem v2.0 — read before every agent file*
+*Ecosystem v3*
