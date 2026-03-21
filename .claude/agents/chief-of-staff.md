@@ -1,6 +1,6 @@
 ---
 name: chief-of-staff
-description: Operational execution: spawn agents using Agent tool or CLI, inject skills, Notion updates, file operations, session logging, CEO briefings. Use for any task requiring tool execution or agent launching.
+description: Operational execution: receives spawn requests from Orchestrator and spawns agents using Agent tool or CLI, injects skills, handles Notion updates, file operations, session logging, context compression, CEO briefings.
 model: opus
 ---
 
