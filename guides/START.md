@@ -6,14 +6,14 @@
 
 A complete AI agent operating system for any project.
 37 active agents across 10 teams. Skills injected on demand.
-One session to open. Chief of Staff handles everything else.
+One Claude Code session to open. No terminals. No manual agent loading. Chief of Staff handles everything.
 
 ---
 
 ## Folder structure — what lives where
 
 ```
-Ecosystem_Skills_v3/
+Ecosystem_v7/
 │
 ├── CLAUDE.md              ← Orchestrator instructions (Claude Code reads this automatically)
 │
@@ -46,6 +46,8 @@ Ecosystem_Skills_v3/
 │   ├── dormant-registry.md
 │   └── ... (16 agent files)
 │
+├── tasks/                ← todo.md, lessons.md, templates/
+│
 └── guides/                ← Everything for humans
     ├── START.md           ← This file
     ├── PROJECT_CONFIG_TEMPLATE.md
@@ -76,7 +78,7 @@ a file a Claude Code subagent. The full role definition is inside the same file.
 
 ```bash
 # From your project root
-bash path/to/Ecosystem_Skills_v3/guides/setup.sh
+bash path/to/Ecosystem_v7/guides/setup.sh
 ```
 
 Then:

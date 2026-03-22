@@ -1,52 +1,29 @@
-# CAPACITY SIGNAL PROTOCOL
-## How agents flag overload and request dormant agent activation
+# CAPACITY PROTOCOL
 
----
+File a CAPACITY ticket when you hit structural limits:
+- **COMPLEXITY** — task needs deeper expertise than your role
+- **SCOPE CREEP** — absorbing dormant agent's work
 
-## Signal Types
+Volume alone never justifies activation.
 
-- **VOLUME** — too many tasks. Solve by reprioritisation. No activation.
-- **COMPLEXITY** — tasks need deeper expertise than this agent was built for. May justify activation.
-- **SCOPE CREEP** — agent absorbing work that belongs to a dormant agent. Strongest signal.
-
-Only COMPLEXITY and SCOPE CREEP justify activating a dormant agent.
-
----
-
-## Process
+## Ticket
 
 ```
-Agent files CAPACITY ticket → Orchestrator assesses within 24h
-
-REPRIORITISE  : Signal is VOLUME. Orchestrator adjusts workload.
-RECOMMEND     : Evidence is solid. Orchestrator prepares activation brief for CEO Layer.
-INSUFFICIENT  : More evidence needed. Review date set.
-
-CEO Layer decides:
-ACTIVATE  → Orchestrator runs activation checklist from dormant-registry.md
-DEFER     → Review date set
-DECLINE   → Orchestrator adjusts workload instead
+CAPACITY TICKET
+Agent        : [name]
+Signal type  : COMPLEXITY / SCOPE CREEP
+Dormant agent: [from dormant-registry.md]
+Evidence     : [3-5 examples with dates]
+Impact       : [what's degrading]
+What I tried : [reprioritisation attempted]
 ```
 
----
+## Decision chain
 
-## Activation Checklist (from dormant-registry.md)
+Orchestrator assesses → VOLUME (reprioritise) / COMPLEXITY+SCOPE (brief CEO Layer)
+CEO Layer: ACTIVATE / DEFER / DECLINE
 
-When CEO Layer approves:
-1. Copy dormant agent file from 03_DORMANT/ to .ecosystem/agents/
-2. Brief new agent on project context
-3. Define handoff — exactly which tasks transfer
-4. Both agents confirm boundary is clear
-5. Update dormant-registry.md status to Active
+Activation: copy dormant file to `.claude/agents/`. Available immediately.
 
 ---
-
-## What This System Is Not
-
-- Not a way to avoid difficult work
-- Not triggered by a single hard task
-- Not bypassed because something feels urgent
-- CEO Layer always makes the final call
-
----
-*Capacity Protocol v2.0 · Ecosystem v2.0*
+*Capacity Protocol v2 · Ecosystem v7*

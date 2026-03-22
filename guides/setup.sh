@@ -41,7 +41,15 @@ printf "| # | Type | Priority | From | Need | Status |\n|---|---|---|---|---|---
 echo "     .ecosystem/ created"
 
 # 5. dormant agents (available but not loaded)
-echo "5/5  Staging dormant agents..."
+echo "5/5  Creating task files..."
+mkdir -p tasks
+cp "$ECOSYSTEM_SRC/tasks/todo.md" tasks/
+cp "$ECOSYSTEM_SRC/tasks/lessons.md" tasks/
+mkdir -p tasks/templates
+cp "$ECOSYSTEM_SRC/tasks/templates/"*.md tasks/templates/ 2>/dev/null || true
+echo "     tasks/todo.md + tasks/lessons.md created"
+
+echo "6/6  Staging dormant agents..."
 mkdir -p .dormant
 cp "$ECOSYSTEM_SRC/dormant/"*.md .dormant/
 echo "     $(ls .dormant/ | wc -l) dormant agents → .dormant/"

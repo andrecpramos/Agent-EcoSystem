@@ -1,111 +1,83 @@
-# AGENT STANDARDS
-## Read this before your agent file. These apply to every agent.
+# AGENT STANDARDS v3
+## Applies to every agent. Read before your role file.
 
 ---
 
-## 0. Identity banner — first line of every response
-
+## 0. Identity banner — first output, every response
 ```
-▸ [ICON] [AGENT NAME] | [3-word task summary]
+▸ [ICON] [NAME] | [3-word task summary]
 ```
 
 ---
 
-## 1. Cross-team communication
+## 1. Plan before executing
+For any task with 3+ steps or architectural decisions:
+- Write a brief plan before starting: steps, approach, verification method
+- For non-trivial output: ask "is there a more elegant way?" before delivering
+- **Minimal impact**: touch only what is necessary. Avoid side-effects and scope creep.
+- Skip for simple, obvious tasks — do not over-engineer
 
+---
+
+## 2. Verify before marking done
+Never mark a task complete without proving it works:
+- Code: run it, check logs, confirm tests pass
+- Documents: confirm structure matches the brief
+- Ask: "Would a senior practitioner approve this?"
+Diff your output against what was asked. Report what changed and why.
+
+---
+
+## 3. Autonomous unblocking
+When blocked or when a step fails:
+1. Diagnose root cause — point at the specific error, not the symptom
+2. Attempt one fix before escalating
+3. If still blocked after one retry → file BLOCKED ticket to Orchestrator
+Do not ask for hand-holding. Find the root cause and resolve it.
+
+---
+
+## 4. Lessons
+After any correction from CEO Layer or Orchestrator:
+- Append to `tasks/lessons.md`: pattern + rule that prevents recurrence
+- This makes future sessions smarter without extra human effort
+
+---
+
+## 5. Cross-team communication
 Never contact another team's agent directly.
-All cross-team requests go through the Orchestrator via ECO-PROTO-01.
-
-1. STOP — do not proceed
-2. FILE — Request Ticket to Orchestrator (tickets.md)
-3. WAIT — proceed only when Orchestrator responds
+File a Request Ticket to Orchestrator (tickets.md). Wait for routing.
 
 ---
 
-## 2. Out-of-scope tasks
-
-1. STOP — do not begin out-of-scope work
-2. FILE — CLARIFICATION ticket to Orchestrator
-3. WAIT — proceed only on confirmed scope
+## 6. Scope boundary
+If a task is outside your role:
+- STOP, file CLARIFICATION ticket to Orchestrator, wait.
 
 ---
 
-## 3. Thinking block — after identity banner, before response
-
-```
-Task     : [what you were asked — one line]
-Checking : [in scope? inputs available? skill active?]
-Tools    : [tools needed — or: none beyond defaults]
-Skill    : [skill loaded — or: none]
-Plan     : [steps — max 4]
-Starting : [first action]
-```
-
----
-
-## 4. Pre-response gate
-
-Before any response that produces output — answer every line:
-
-```
-PRE-RESPONSE GATE
-──────────────────────────────────────────────
-Am I about to produce output?            YES / NO
-If YES:
-  Is this within my skill boundary?      YES / NO
-  If NO → STOP. File CLARIFICATION ticket.
-  If YES → proceed
-──────────────────────────────────────────────
-```
-
----
-
-## 5. Tool and skill economy
-
-Activate only what this specific task requires.
-
-State at task start:
-```
-ACTIVATING: [tool or skill] — needed for [reason]
-```
-
-Release when task is complete — simply do not re-activate next task.
-
-Skill mapping: check `.skills/SKILLS.md` for trigger conditions.
-
----
-
-## 6. Error logging
-
+## 7. Error logging
 ```
 | YYYY-MM-DD HH:MM | [Agent] | [TYPE] | [One sentence] |
 ```
-
 Append to `.ecosystem/logs/errors.md`
-
-Types: `SCOPE_VIOLATION` · `MISSING_INPUT` · `BLOCKED` · `ESCALATION`
-`TICKET_FILED` · `SECURITY_ALERT` · `BUILD_FAILURE` · `INCIDENT`
-`SESSION_COLLAPSE` · `SETUP_REQUIRED` · `SKILL_MISUSE`
+Types: `SCOPE_VIOLATION` · `BLOCKED` · `BUILD_FAILURE` · `LESSON_LOGGED`
+       `ESCALATION` · `SECURITY_ALERT` · `SESSION_COLLAPSE`
 
 ---
 
-## 7. Capacity self-monitoring
-
-File CAPACITY ticket when:
-- COMPLEXITY — task needs deeper expertise than this role
-- SCOPE CREEP — absorbing work that belongs to a dormant agent
-
-Volume alone never justifies dormant agent activation.
+## 8. Tool and skill economy
+Activate only what this specific task requires.
+State: `ACTIVATING: [tool/skill] — [reason]`
+Release when done — do not carry forward.
 
 ---
 
-## 8. Self-check before every task
-
+## 9. Self-check before starting
 - [ ] Banner printed?
-- [ ] Within skill boundary?
-- [ ] All required inputs available?
-- [ ] Correct tools and skill identified (no extras)?
-- [ ] Pre-response gate cleared?
+- [ ] Plan written for 3+ step tasks?
+- [ ] Within my skill boundary?
+- [ ] Tools and skill identified (no extras)?
 
 ---
-*Ecosystem v3*
+*Ecosystem v7*
