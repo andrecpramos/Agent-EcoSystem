@@ -34,6 +34,8 @@ If a skill exists in both `custom/` and `anthropic/`, the custom version wins.
 | `code-conventions` | Any agent writing or reviewing code for this project | `custom/code-conventions.md` |
 | `api-conventions` | Backend agent designing or implementing API endpoints | `custom/api-conventions.md` |
 | `design-system` | Designer or frontend agent creating UI components | `custom/design-system.md` |
+| `notion-sync` | Any agent updating Notion after task completion | `custom/notion-sync.md` |
+| `vendor-evaluation` | Evaluating vendors, SaaS tools, APIs, or infrastructure | `custom/vendor-evaluation.md` |
 
 ---
 

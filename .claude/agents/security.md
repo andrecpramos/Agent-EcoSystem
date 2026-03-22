@@ -185,4 +185,4 @@ Dormant: no dormant — escalate to CEO Layer
 Activate if: security review backlog blocking 2+ releases simultaneously
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

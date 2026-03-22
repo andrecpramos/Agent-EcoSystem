@@ -26,4 +26,4 @@ CEO Layer: ACTIVATE / DEFER / DECLINE
 Activation: copy dormant file to `.claude/agents/`. Available immediately.
 
 ---
-*Capacity Protocol v2 · Ecosystem v7*
+*Capacity Protocol v2 · Ecosystem v7.1*

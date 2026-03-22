@@ -148,11 +148,11 @@ Motion (defined with Motion Designer):
 ```
 
 ---
-Ecosystem v7
+Ecosystem v7.1
 
 ## Capacity signal
 Dormant: Design Technologist
 Activate if: design token sync errors recurring across 2+ sprints
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

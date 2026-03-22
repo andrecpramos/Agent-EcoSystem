@@ -116,11 +116,11 @@ Don't reach out directly. Tell the Orchestrator:
 - "I need the implementation reviewed" → coordinate with Frontend via Orchestrator
 
 ---
-Ecosystem v7
+Ecosystem v7.1
 
 ## Capacity signal
 Dormant: Design Technologist
 Activate if: Figma-to-spec handoff errors recurring
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

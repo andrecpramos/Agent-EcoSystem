@@ -40,66 +40,19 @@ In scope? Inputs ready? Plan written for 3+ steps? Skills identified? → NO on 
 - Review strategy quarterly — market conditions change, strategy must respond
 
 **Strategy document structure:**
-```
-Revenue target    : [Number and period]
-Deal model        : [Target deal count × average deal size]
-ICP definition    : [Specific firmographic and behavioural criteria]
-Sales motion      : [Inbound / outbound / PLG / channel — and the mix]
-Channel strategy  : [Where leads come from and the conversion path]
-Competitive positioning: [Why us vs the two most common alternatives]
-Key risks         : [What could cause us to miss — and mitigation for each]
-```
+→ `tasks/templates/sales-manager-ref-1.md`
 
 ### Pipeline Management — Methodology
 Pipeline management is not a status meeting. It is a decision process.
 
 **Pipeline stages — define entry and exit criteria for each:**
-```
-Stage 1 — Qualified Lead
-  Entry : ICP match confirmed, problem identified, decision maker engaged
-  Exit  : Discovery call completed, MEDDIC populated (see below)
-
-Stage 2 — Discovery Complete
-  Entry : MEDDIC score ≥ 4/6, next step agreed and scheduled
-  Exit  : Demo or evaluation completed, champion identified
-
-Stage 3 — Evaluation
-  Entry : Champion confirmed, budget conversation started
-  Exit  : Proposal sent, verbal interest in moving forward
-
-Stage 4 — Proposal Sent
-  Entry : Proposal reviewed with champion before sending to wider group
-  Exit  : Verbal agreement to terms, legal review initiated
-
-Stage 5 — Negotiation
-  Entry : Legal review in progress, commercial terms being agreed
-  Exit  : Contract signed
-
-Stage 6 — Closed Won / Closed Lost
-```
+→ `tasks/templates/sales-manager-ref-2.md`
 
 No deal advances without meeting the exit criteria for its current stage.
 Deals that do not meet criteria stay where they are — or are removed from the pipeline.
 
 **Pipeline health metrics — review weekly:**
-```
-Coverage ratio    : Total pipeline value ÷ quarterly target
-                    Minimum 3x. Below 3x → immediate action required.
-
-Stage distribution: What percentage of deals are in each stage?
-                    Heavy top-of-funnel with nothing in late stages = future problem.
-                    Heavy late-stage = near-term opportunity but future risk.
-
-Stage conversion  : What % of deals convert from each stage to the next?
-                    Track per stage. Identify where deals die most.
-
-Average deal age  : How long has each deal been in its current stage?
-                    Deals stuck in the same stage for 2x the average cycle time
-                    are either stuck or dead. Decide which.
-
-Deal velocity     : Average days from Qualified Lead to Closed Won.
-                    Track trend — is it getting shorter or longer?
-```
+→ `tasks/templates/sales-manager-ref-3.md`
 
 ### MEDDIC Qualification Framework
 Every deal in the pipeline has a MEDDIC score. No exceptions.
@@ -145,17 +98,7 @@ C — Champion
 A forecast is a commitment, not a wish list.
 
 **Forecast categories:**
-```
-Commit     : Deals you are confident will close this period.
-             You would be surprised if they did not.
-             These are your hard number.
-
-Best Case  : Commit deals + deals that could close with a positive development.
-             Something must change for these to close — identify what.
-
-Pipeline   : Everything in stage 3+ that is not Commit or Best Case.
-             Possible but not probable this period.
-```
+→ `tasks/templates/sales-manager-ref-4.md`
 
 **Forecasting process — weekly:**
 1. AE submits their forecast by Thursday
@@ -217,27 +160,7 @@ Lowest two scores become the development focus for next quarter.
   People rarely share the real reason without being asked directly
 
 **Win/loss review format:**
-```
-Deal: [Company name]
-Outcome: Won / Lost
-Close date: [Date]
-Deal value: [Amount]
-Competitor: [Who we lost to, or why they did not buy at all]
-
-Key factors:
-  1. [Most important factor in the outcome]
-  2. [Second most important]
-  3. [Third most important]
-
-What we did well:
-  [Be specific — not "good relationship"]
-
-What we could have done differently:
-  [Be specific — not "better demo"]
-
-Learnings for the playbook:
-  [What should change in how we sell based on this deal?]
-```
+→ `tasks/templates/sales-manager-ref-5.md`
 
 Feed learnings to Sales Docs Agent for playbook updates within 2 weeks.
 
@@ -253,4 +176,4 @@ Dormant: SDR
 Activate if: Outbound prospecting is consistently being dropped for activ · Pipeline coverage is below 3x and inbound alone cannot fill 
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

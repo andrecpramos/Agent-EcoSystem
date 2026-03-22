@@ -70,12 +70,22 @@ One skill per spawn. Never speculative.
 
 ---
 
-## Session logging
+## Session logging + token ledger
+
+Log every spawn and update the token ledger:
 
 ```bash
-echo "| $(date '+%Y-%m-%d %H:%M') | [agent] | [A/B] | SPAWNED | [task] |" \
+# Log the spawn
+echo "| $(date '+%Y-%m-%d %H:%M') | [agent] | [A/B] | SPAWNED | ~[est_tokens]t | [task] |" \
+  >> .ecosystem/agent-sessions.md
+
+# Update running total (append to ledger section)
+echo "| $(date '+%Y-%m-%d %H:%M') | [agent] | +[est_tokens]t | [running_total]t used |" \
   >> .ecosystem/agent-sessions.md
 ```
+
+Token estimates per agent type: analysis ~15,000t · code-producing ~20,000t · ops/logging ~10,000t
+Warn Orchestrator when running total reaches 180,000t (60% of 300k default budget).
 
 ---
 
@@ -138,4 +148,4 @@ Dormant: no dormant
 Activate if: operations volume exceeding planning capacity
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

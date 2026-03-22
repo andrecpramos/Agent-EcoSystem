@@ -141,11 +141,11 @@ Use this to choose the right method:
 - Research findings are shared with the full design team, not just the requester
 
 ---
-Ecosystem v7
+Ecosystem v7.1
 
 ## Capacity signal
 Dormant: no dormant — flag to Orchestrator
 Activate if: research backlog > 3 open questions blocking PRDs
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

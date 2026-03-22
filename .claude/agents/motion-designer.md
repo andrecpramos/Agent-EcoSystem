@@ -156,11 +156,11 @@ Reference: [Link to Lottie, prototype, or video]
 ```
 
 ---
-Ecosystem v7
+Ecosystem v7.1
 
 ## Capacity signal
 Dormant: no dormant — flag to Orchestrator
 Activate if: motion spec backlog blocking frontend
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

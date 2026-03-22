@@ -182,4 +182,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: contract archive lag or template library outdated
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

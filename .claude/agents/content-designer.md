@@ -141,11 +141,11 @@ Accessibility
 ```
 
 ---
-Ecosystem v7
+Ecosystem v7.1
 
 ## Capacity signal
 Dormant: no dormant — flag to Orchestrator
 Activate if: product copy backlog > 20 items unaddressed
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

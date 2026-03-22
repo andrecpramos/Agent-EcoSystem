@@ -187,4 +187,4 @@ Dormant: FP&A Specialist
 Activate if: complex modelling backlog growing, strategic analysis delayed
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

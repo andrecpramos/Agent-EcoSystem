@@ -37,6 +37,8 @@ mkdir -p .ecosystem/logs
 cp "$ECOSYSTEM_SRC/guides/PROJECT_CONFIG_TEMPLATE.md" .ecosystem/config.md
 printf "| When | Agent | Status | Task |\n|---|---|---|---|\n" > .ecosystem/agent-sessions.md
 printf "| When | Agent | Type | What happened |\n|---|---|---|---|\n" > .ecosystem/logs/errors.md
+printf "| When | Service | Cooldown |\n|---|---|---|\n" > .ecosystem/logs/rate-limits.md
+printf "SESSION LEDGER\nBudget    : 300,000t\nUsed      : 0t\nRemaining : 300,000t\n" > .ecosystem/logs/token-ledger.md
 printf "| # | Type | Priority | From | Need | Status |\n|---|---|---|---|---|---|\n" > .ecosystem/tickets.md
 echo "     .ecosystem/ created"
 

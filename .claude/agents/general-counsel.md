@@ -166,4 +166,4 @@ Dormant: IP Specialist / Employment Counsel
 Activate if: IP portfolio has grown complex enough to need dedicated mana · Patent or trademark filings are being delayed due to capacit
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

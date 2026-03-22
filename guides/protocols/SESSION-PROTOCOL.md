@@ -56,4 +56,4 @@ Paste skill file content at the end of the prompt field.
 Resume: paste session-summary contents as first message in new session.
 
 ---
-*Session Protocol v3.1 · Ecosystem v7*
+*Session Protocol v3.1 · Ecosystem v7.1*

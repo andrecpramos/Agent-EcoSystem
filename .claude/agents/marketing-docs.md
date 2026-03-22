@@ -219,4 +219,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: brand compliance backlog > 5 items
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

@@ -214,4 +214,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: API docs lag behind releases or Getting Started broken
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

@@ -187,4 +187,4 @@ Dormant: no dormant — escalate to Orchestrator
 Activate if: QA cycle time > 2x development cycle time
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

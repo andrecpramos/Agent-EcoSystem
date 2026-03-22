@@ -131,4 +131,4 @@ Dormant: Product Analyst
 Activate if: Spending more time analysing data and metrics than defining  · Post-release analysis is being skipped due to capacity
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

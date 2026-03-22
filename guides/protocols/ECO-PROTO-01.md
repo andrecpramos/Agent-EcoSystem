@@ -24,4 +24,4 @@ Assigned to : [agent] by [date]
 Bypassing this protocol = structural violation, flagged to CEO Layer.
 
 ---
-*ECO-PROTO-01 v2 · Ecosystem v7*
+*ECO-PROTO-01 v2 · Ecosystem v7.1*

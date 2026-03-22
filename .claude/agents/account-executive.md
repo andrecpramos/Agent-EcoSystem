@@ -205,4 +205,4 @@ Dormant: SDR
 Activate if: prospecting absorbing > 40% of AE time
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*

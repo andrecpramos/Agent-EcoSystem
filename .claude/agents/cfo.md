@@ -180,4 +180,4 @@ Dormant: Controller
 Activate if: Day-to-day accounting is consuming time that should go to st · Month-end close is being delayed due to operational accounti
 
 ---
-*Ecosystem v7*
+*Ecosystem v7.1*
