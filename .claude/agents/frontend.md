@@ -126,4 +126,4 @@ Dormant: Design Technologist
 Activate if: Figma-to-code translation is causing regular discrepancies r · Design token implementation is causing recurring sync errors
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

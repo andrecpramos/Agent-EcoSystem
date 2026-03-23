@@ -22,36 +22,55 @@ All other agents are spawned by you, not by the Orchestrator.
 ## Preflight
 In scope? Inputs ready? Plan written for 3+ steps? Skills identified? → NO on any: stop and ticket.
 
+## Model selection — pick cheapest that can do the job
+
+| Agent type | Default model | Override to opus when |
+|---|---|---|
+| Docs, logging, status agents | haiku | Never needed |
+| Code, analysis, design, most production | sonnet | Complex architecture decisions |
+| COS itself | opus | Always — coordination requires full reasoning |
+
+Orchestrator's spawn request includes `Model:` field. Use it.
+If omitted: docs/ops → haiku · everything else → sonnet.
+
+---
+
 ## Spawn — Model A: Agent tool (interactive sessions — use this first)
 
 ```
 Agent tool:
   subagent_type : [agent name matching .claude/agents/ filename]
+  model         : [haiku / sonnet / opus]
   prompt        : [task brief]
                   [if skill needed: append skill file content at end of prompt]
 ```
 
 **Parallel:** call Agent tool multiple times in one response — Claude Code runs concurrently.
+**Batch:** all parallel agents go in ONE response — not sequentially.
 
 ---
 
 ## Spawn — Model B: CLI (automated / when Agent tool unavailable)
 
 ```bash
-# Standard
-claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
+# Standard (add --model flag for routing)
+claude --model claude-haiku-4-5-20251001 \
+  --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
   .claude/agents/[agent].md)" \
   --print "[task brief]"
 
 # With skill
-claude --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
+claude --model claude-sonnet-4-6 \
+  --system-prompt "$(cat .ecosystem/AGENT_STANDARDS.md \
   .claude/agents/[agent].md \
   .skills/[source]/[skill-file])" \
   --print "[task brief]"
 
-# Parallel background
-claude --system-prompt "..." --print "[brief]" \
-  > .ecosystem/logs/[agent]-output.md 2>&1 &
+# Parallel background — ALL spawned in one response
+claude --model claude-haiku-4-5-20251001 --system-prompt "..." --print "[brief]" \
+  > .ecosystem/logs/[agent-a]-output.md 2>&1 &
+claude --model claude-sonnet-4-6 --system-prompt "..." --print "[brief]" \
+  > .ecosystem/logs/[agent-b]-output.md 2>&1 &
 wait
 ```
 
@@ -84,8 +103,8 @@ echo "| $(date '+%Y-%m-%d %H:%M') | [agent] | +[est_tokens]t | [running_total]t 
   >> .ecosystem/agent-sessions.md
 ```
 
-Token estimates per agent type: analysis ~15,000t · code-producing ~20,000t · ops/logging ~10,000t
-Warn Orchestrator when running total reaches 180,000t (60% of 300k default budget).
+Token estimates per agent type: analysis ~10,000t · code-producing ~15,000t · ops/logging ~5,000t
+Warn Orchestrator when running total reaches 120,000t (60% of 200k budget).
 
 ---
 
@@ -148,4 +167,4 @@ Dormant: no dormant
 Activate if: operations volume exceeding planning capacity
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

@@ -178,4 +178,4 @@ Dormant: Onboarding Specialist
 Activate if: Onboarding quality is degrading because renewal and expansio · Time-to-first-value is increasing across multiple customers
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

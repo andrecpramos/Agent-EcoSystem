@@ -4,25 +4,36 @@
 
 ## What this is
 
-A complete AI agent operating system for any project.
+A token-lean AI agent operating system for small/medium projects.
 37 active agents across 10 teams. Skills injected on demand.
 One Claude Code session to open. No terminals. No manual agent loading. Chief of Staff handles everything.
+
+**Token efficiency built-in:**
+- Auto-compaction activates at 45% full (not 80%) via `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=50`
+- Model routing: haiku for docs/ops · sonnet for most work · opus for COS + security/legal only
+- Session state auto-restored via session hook on start
+- Budget: 200,000t per session — thresholds at 120k (warn) and 160k (wrap up)
 
 ---
 
 ## Folder structure — what lives where
 
 ```
-Ecosystem_v7/
+Agent-EcoSystem/
 │
 ├── CLAUDE.md              ← Orchestrator instructions (Claude Code reads this automatically)
 │
 ├── .claude/
-│   └── agents/            ← 37 active subagents (Claude Code native format)
-│       ├── frontend.md
-│       ├── backend.md
-│       ├── chief-of-staff.md
-│       └── ... (34 more)
+│   ├── agents/            ← 37 active subagents (Claude Code native format)
+│   │   ├── frontend.md      (sonnet)
+│   │   ├── backend.md       (sonnet)
+│   │   ├── chief-of-staff.md (opus — coordinator)
+│   │   ├── security.md      (opus — high-stakes)
+│   │   ├── general-counsel.md (opus — legal)
+│   │   └── ... (32 more, mostly sonnet/haiku)
+│   ├── settings.json      ← CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=50 + session hooks
+│   └── helpers/
+│       └── session-hook.cjs ← Auto-restores last session summary on start
 │
 ├── .skills/               ← Skills library — injected on demand, never permanently
 │   ├── SKILLS.md          ← Registry: which skill, which agent, when to use
@@ -33,32 +44,24 @@ Ecosystem_v7/
 │   │   └── design-system.md
 │   └── anthropic/         ← Official Anthropic skills (auto-linked)
 │       ├── frontend-design/
-│       ├── docx/
-│       └── ... (4 more)
+│       └── ... (5 more)
 │
-├── .ecosystem/            ← Runtime state only (written during operation)
-│   ├── config.md          ← Your project settings
-│   ├── agent-sessions.md  ← Session log (Chief of Staff maintains)
-│   ├── tickets.md         ← Request tickets
-│   └── logs/              ← Agent outputs
+├── .ecosystem/            ← Runtime state (written during operation)
+│   ├── config.md          ← YOUR project settings — fill this in first
+│   ├── agent-sessions.md  ← Token ledger (Chief of Staff maintains)
+│   ├── tickets.md         ← Request/blocked/escalation tickets
+│   ├── AGENT_STANDARDS.md ← Standards injected into every agent spawn
+│   └── logs/              ← Agent outputs + session summaries
 │
 ├── dormant/               ← 17 agents waiting to activate when needed
-│   ├── dormant-registry.md
-│   └── ... (16 agent files)
 │
-├── tasks/                ← todo.md, lessons.md, templates/
+├── tasks/                 ← todo.md, lessons.md, templates/
 │
 └── guides/                ← Everything for humans
     ├── START.md           ← This file
     ├── PROJECT_CONFIG_TEMPLATE.md
     ├── setup.sh
-    ├── vscode_settings.json
     └── protocols/
-        ├── AGENT_STANDARDS.md
-        ├── ECO-PROTO-01.md
-        ├── SESSION-PROTOCOL.md
-        ├── capacity-protocol.md
-        └── ORCHESTRATOR_MCP_MAP.md
 ```
 
 ---
@@ -78,11 +81,11 @@ a file a Claude Code subagent. The full role definition is inside the same file.
 
 ```bash
 # From your project root
-bash path/to/Ecosystem_v7/guides/setup.sh
+bash path/to/Agent-EcoSystem/guides/setup.sh
 ```
 
 Then:
-1. Fill in `.ecosystem/config.md` — project name, active teams
+1. Fill in `.ecosystem/config.md` — project name, active teams (pre-created, just fill it)
 2. Fill in `.skills/custom/` templates — your conventions, voice, design system
 3. Open Claude Code and give a task
 
@@ -137,4 +140,4 @@ It is immediately available for spawning. No other changes needed.
 4. `.skills/SKILLS.md` — skill registry and injection rules
 
 ---
-*Ecosystem + Skills v3*
+*Ecosystem v8.0 — token-lean for small/medium projects*

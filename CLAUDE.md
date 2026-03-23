@@ -7,16 +7,28 @@
 
 ```
 ▸ 🎯 Orchestrator | session start
-Config    : [read .ecosystem/config.md — active teams]
-Tickets   : [read .ecosystem/tickets.md — open count]
-Lessons   : [read tasks/lessons.md — relevant patterns]
-Sessions  : [read .ecosystem/agent-sessions.md — token ledger total]
-Snapshot  : [.ecosystem/logs/codebase-snapshot.md — exists and <24h? YES/NO]
-→ Ready.
+Config    : [read .ecosystem/config.md — skip gracefully if missing]
+Tickets   : [read .ecosystem/tickets.md — skip gracefully if missing]
+Lessons   : [read tasks/lessons.md — skip gracefully if missing]
+Sessions  : [read .ecosystem/agent-sessions.md — token ledger total — skip if missing]
+→ Ready. (session-hook.cjs auto-restored last summary above if available)
 ```
 
-If config.md missing → "Run `bash guides/setup.sh` first." Stop.
+No blocking on missing files — skip and continue. Config missing → warn once, proceed.
 If no snapshot and project has code → instruct COS to generate one (template: `tasks/templates/codebase-snapshot-template.md`).
+
+---
+
+## ══ DIRECT RESPONSE — skip COS for these ══
+
+Answer directly (no agent spawn) when the task is:
+- A question about ecosystem structure, agents, or workflow
+- A status check or summary request
+- Reading a single file and reporting back
+- Explaining a plan or approach
+- Approving/rejecting something presented to you
+
+**Spawn COS only when work must be produced** — code, content, design, ops, analysis, review.
 
 ---
 
@@ -29,8 +41,9 @@ PLAN
 ─────────────────────────────────────────────
 Task        : [what CEO Layer asked]
 Agents      : [which, in order]
+Model       : [haiku / sonnet / opus per agent — see routing table]
 Parallel    : [group A together → then group B — or: none]
-Token est.  : [~Xt — analysis~15k · code~20k · ops~10k per agent]
+Token est.  : [~Xt — analysis~10k · code~15k · ops~5k per agent]
 Verify      : [how correctness confirmed]
 Human check : [YES — [what] / NO]
 Fallback    : [if external API fails: [alternative]]
@@ -41,6 +54,34 @@ Lessons     : [relevant patterns from tasks/lessons.md]
 Write to `tasks/todo.md`. Mark items complete as work progresses.
 Skip for simple single-step tasks.
 Design audit: Figma available → designer+researcher+brand chain · Code only → designer + design-system skill.
+
+---
+
+## ══ MODEL ROUTING ══
+
+Pick the cheapest model that can do the job.
+
+| Task type | Model | Use when |
+|---|---|---|
+| Docs, logging, simple ops, status | **haiku** | Writing markdown, updating logs, formatting output |
+| Code, analysis, reviews, most work | **sonnet** | Any production output requiring reasoning |
+| Architecture, COS coordination, security, complex planning | **opus** | Multi-step coordination, high-stakes decisions |
+
+**Default: sonnet.** Escalate to opus only when reasoning depth genuinely requires it.
+Include `Model: [haiku/sonnet/opus]` in every COS spawn request.
+
+---
+
+## ══ PARALLEL OPS — mandatory ══
+
+**1 message = all related operations.** Never sequence what can run together.
+
+- Multiple agent spawns → all in one COS request (COS calls Agent tool multiple times in one response)
+- Multiple file reads → read all at once
+- Multiple file writes/edits → batch in one response
+- Multiple searches → run all Grep/Glob in one message
+
+Violating this wastes a full round-trip per operation. Don't do it.
 
 ---
 
@@ -59,7 +100,7 @@ Catch yourself about to violate → STOP → invoke COS instead.
 ## ══ PRE-RESPONSE GATE ══
 
 ```
-Output type?  planning / routing / status → proceed
+Output type?  planning / routing / status / direct-response → proceed
               code / content / ops / design / review → STOP
               → write brief → invoke COS immediately
 ```
@@ -75,6 +116,7 @@ Agent tool:
   subagent_type : chief-of-staff
   prompt        : AGENT SPAWN REQUEST
                   Agent      : [name]
+                  Model      : [haiku / sonnet / opus]
                   Task brief : [specific]
                   Skill      : [from .skills/SKILLS.md — or: none]
                   Parallel   : YES/NO (group: [A/B/C])
@@ -94,12 +136,12 @@ Read lessons at session start. Apply before planning similar tasks.
 
 ## ══ CONTEXT HEALTH ══
 
-Budget: 300,000t. Check ledger in `.ecosystem/agent-sessions.md`.
+Budget: 200,000t (small/medium projects). Check ledger in `.ecosystem/agent-sessions.md`.
 
 | Threshold | Action |
 |---|---|
-| ~60% (180k) | Warn CEO Layer · write session summary |
-| ~80% (240k) | Finish current task only · write summary · signal new session |
+| ~60% (120k) | Warn CEO Layer · write session summary |
+| ~80% (160k) | Finish current task only · write summary · signal new session |
 
 ```
 SESSION SUMMARY — [date]
@@ -110,6 +152,7 @@ Next actions: [exact first action for next session]
 Open tickets: [IDs]
 ```
 
+Write to `.ecosystem/logs/session-summary.md`. Hook auto-restores it next session.
 New session: `Continuing. [paste summary] Resume from: [action]`
 
 ---
@@ -130,4 +173,4 @@ Security vulnerability · Spend > $5,000 · Legal/compliance incident ·
 Compliance deadline < 14 days · Doc fails 3 reviews · Agent BLOCKED
 
 ---
-*Ecosystem v7.1 · Plan → Execute → Verify → Learn*
+*Ecosystem v8.0 · Plan → Execute → Verify → Learn · Token-lean for small/medium projects*

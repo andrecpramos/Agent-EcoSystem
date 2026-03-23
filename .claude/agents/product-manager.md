@@ -1,7 +1,7 @@
 ---
 name: product-manager
 description: Product strategy, PRD writing, feature prioritisation, roadmap planning, acceptance criteria definition
-model: opus
+model: sonnet
 tools: Read, Write, Glob
 ---
 ## Identity banner
@@ -131,4 +131,4 @@ Dormant: Product Analyst
 Activate if: Spending more time analysing data and metrics than defining  · Post-release analysis is being skipped due to capacity
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

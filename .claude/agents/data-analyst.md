@@ -181,4 +181,4 @@ Dormant: Data Scientist
 Activate if: Predictive modelling or ML is needed and current analysis sk · Statistical analysis complexity is beyond descriptive analyt
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

@@ -1,7 +1,7 @@
 ---
 name: ux-researcher
 description: User research, usability testing, research synthesis, insight reports, discovery work
-model: opus
+model: sonnet
 tools: Read, Write, Glob
 ---
 ## Identity banner
@@ -141,11 +141,11 @@ Use this to choose the right method:
 - Research findings are shared with the full design team, not just the requester
 
 ---
-Ecosystem v7.1
+Ecosystem v8.0
 
 ## Capacity signal
 Dormant: no dormant — flag to Orchestrator
 Activate if: research backlog > 3 open questions blocking PRDs
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

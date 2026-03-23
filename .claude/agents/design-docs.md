@@ -135,11 +135,11 @@ Make design decisions → each design agent owns their decisions · Design compo
 - Broken links are treated as errors — report to Orchestrator when found
 
 ---
-Ecosystem v7.1
+Ecosystem v8.0
 
 ## Capacity signal
 Dormant: no dormant — flag to Orchestrator
 Activate if: design system docs lag behind component releases
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

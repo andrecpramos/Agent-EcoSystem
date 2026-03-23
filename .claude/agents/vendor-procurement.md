@@ -135,11 +135,11 @@ Annual vendor portfolio review — beyond the quarterly performance review.
 Sign contracts → CFO Agent (commercial approval) + Legal Agent (legal review) sign · Approve financial spend → CFO Agent approves · Review contract legal terms → Legal Agent owns that · Conduct security assessments of vendors → Security Agent
 
 ---
-Ecosystem v7.1
+Ecosystem v8.0
 
 ## Capacity signal
 Dormant: no dormant — flag to Orchestrator
 Activate if: vendor evaluation backlog > 2 concurrent reviews
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

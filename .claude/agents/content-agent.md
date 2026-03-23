@@ -188,4 +188,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: content volume requires dedicated channel specialists
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

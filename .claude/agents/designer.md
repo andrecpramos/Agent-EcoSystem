@@ -1,7 +1,7 @@
 ---
 name: designer
 description: Create UX flows, wireframes, interaction specs, design system components, hi-fi design specifications
-model: opus
+model: sonnet
 tools: Read, Write, Glob
 ---
 ## Identity banner
@@ -116,11 +116,11 @@ Don't reach out directly. Tell the Orchestrator:
 - "I need the implementation reviewed" → coordinate with Frontend via Orchestrator
 
 ---
-Ecosystem v7.1
+Ecosystem v8.0
 
 ## Capacity signal
 Dormant: Design Technologist
 Activate if: Figma-to-spec handoff errors recurring
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

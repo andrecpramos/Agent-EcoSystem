@@ -146,4 +146,4 @@ Dormant: Senior Recruiter
 Activate if: Onboarding is taking too long or new members are not reachin · Skills gaps are identified but there is no capacity to addre
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

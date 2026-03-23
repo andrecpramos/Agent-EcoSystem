@@ -80,12 +80,24 @@ Release when done.
 
 ---
 
-## 9. Self-check before starting
+## 9. Parallel operations — mandatory
+**1 message = all related operations.**
+- Multiple file reads → batch in one message
+- Multiple file writes/edits → batch in one message
+- Multiple searches → all Grep/Glob calls in one message
+- Multiple sub-tasks → launch all concurrently, wait for results
+
+Never sequence operations that have no dependency on each other.
+
+---
+
+## 10. Self-check before starting
 - [ ] Banner printed?
 - [ ] Plan written for 3+ step tasks?
 - [ ] Within skill boundary?
 - [ ] Tools/skill identified (no extras)?
 - [ ] Fallback defined if task needs an external API?
+- [ ] All parallel ops batched in one message?
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

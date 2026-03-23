@@ -150,4 +150,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: playbook accuracy falling below 80% win-rate correlation
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

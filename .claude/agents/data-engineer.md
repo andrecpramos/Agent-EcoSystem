@@ -112,4 +112,4 @@ Dormant: ML Engineer
 Activate if: A trained model needs production deployment beyond Backend's · Model serving infrastructure is required
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

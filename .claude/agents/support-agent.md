@@ -122,4 +122,4 @@ Dormant: Technical Support Engineer
 Activate if: Technical tickets (requiring code or API knowledge) exceed 3 · Technical tickets taking 3x longer to resolve than standard 
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

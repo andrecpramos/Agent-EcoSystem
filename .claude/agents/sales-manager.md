@@ -176,4 +176,4 @@ Dormant: SDR
 Activate if: Outbound prospecting is consistently being dropped for activ · Pipeline coverage is below 3x and inbound alone cannot fill 
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

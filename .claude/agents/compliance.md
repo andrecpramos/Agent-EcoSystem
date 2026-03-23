@@ -136,4 +136,4 @@ Dormant: no dormant — escalate to General Counsel
 Activate if: regulatory caseload exceeds monitoring capacity
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

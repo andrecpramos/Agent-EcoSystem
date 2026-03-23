@@ -1,7 +1,7 @@
 ---
 name: accessibility
 description: Accessibility audit, WCAG review, ARIA specification, keyboard navigation review, accessibility sign-off
-model: opus
+model: sonnet
 tools: Read, Glob
 ---
 ## Identity banner
@@ -168,11 +168,10 @@ Forms
 Design screens or visual layouts → UI/UX Designer · Write product copy → Content Designer · Fix accessibility issues in code → Frontend fixes them, you verify · Run full QA testing → Tester owns the release gate, you provide the accessibility verdict · Make brand or visual identity decisions → Brand Designer
 
 ---
-Ecosystem v7.1
 
 ## Capacity signal
 Dormant: Design Technologist
 Activate if: accessibility backlog > 3 features, blocking releases weekly
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

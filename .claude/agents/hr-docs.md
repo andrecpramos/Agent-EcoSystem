@@ -105,4 +105,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: policy library more than 1 sprint behind HR decisions
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

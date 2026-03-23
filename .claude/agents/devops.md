@@ -241,4 +241,4 @@ Dormant: Platform Engineer
 Activate if: Infrastructure spans multiple cloud services with dependenci · Infrastructure architecture work is crowding out CI/CD quali
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

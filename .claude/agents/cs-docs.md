@@ -253,4 +253,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: docs lag behind product changes by > 1 sprint
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

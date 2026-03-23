@@ -213,4 +213,4 @@ Dormant: no dormant — flag to Orchestrator
 Activate if: PRD archive or decision log more than 1 sprint behind
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

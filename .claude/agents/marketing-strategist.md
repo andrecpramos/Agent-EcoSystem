@@ -210,4 +210,4 @@ Dormant: Growth/Paid Acquisition / SEO Specialist
 Activate if: Paid channels are a significant budget line and optimisation · CAC is not being tracked by channel — allocation is guesswor
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*

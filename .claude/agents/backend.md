@@ -148,4 +148,4 @@ Dormant: DBA / API Designer
 Activate if: Query performance issues recurring across 2+ sprints without · Data model has grown beyond 15 tables with complex relations
 
 ---
-*Ecosystem v7.1*
+*Ecosystem v8.0*
