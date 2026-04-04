@@ -1,0 +1,16 @@
+# Claude personal files — never commit
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Deps / build
+node_modules/
+dist/
+build/
+
+# OS
+.DS_Store

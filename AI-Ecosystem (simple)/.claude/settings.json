@@ -1,0 +1,15 @@
+{
+  "model": "claude-sonnet-4-6",
+  "planningModel": "claude-opus-4-5",
+  "permissions": {
+    "allowFileRead": true,
+    "allowFileWrite": true,
+    "allowBashExecution": true,
+    "allowNetworkRequests": false,
+    "confirmBefore": ["delete", "git push", "deploy"]
+  },
+  "memory": {
+    "loadOnStart": ["memory/project-context.md", "memory/lessons.md"],
+    "saveOnEnd": true
+  }
+}
